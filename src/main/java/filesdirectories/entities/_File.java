@@ -6,6 +6,12 @@ import javax.persistence.*;
 @Table(name = "files")
 public class _File {
 
+    public _File(){}
+
+    public _File(long size) {
+        this.size = size;
+    }
+
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
