@@ -39,6 +39,7 @@ public class Directory {
 
 
 
+
     //Getters / Setters
     public Date getDate() {
         return date;
@@ -83,4 +84,5 @@ public class Directory {
     public long getId() {
         return id;
     }
+
 }

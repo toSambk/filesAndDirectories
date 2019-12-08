@@ -18,6 +18,8 @@ public interface DirectoryRepo extends PagingAndSortingRepository<Directory, Lon
 
     Directory findByPath(String path);
 
+    List<Directory> findAll();
+
     void deleteById(long id);
 
     void deleteAll();
