@@ -1,9 +1,10 @@
 package filesdirectories.builder;
 
 import java.io.File;
+import java.io.IOException;
 
-public interface Builder<T> {
+public interface Builder<T, V> {
 
-        T build(File file);
+        T build(V file) throws IOException;
 
 }

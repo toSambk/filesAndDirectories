@@ -1,7 +1,6 @@
 package filesdirectories.entities;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -10,7 +9,7 @@ public class Directory {
 
     public Directory(){};
 
-    public Directory(String path, Date date) {
+    public Directory(String path, String date) {
         this.path = path;
         this.date = date;
     }
@@ -21,8 +20,7 @@ public class Directory {
     private long id;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private String date;
 
     @Column(nullable = false)
     private String path;
@@ -37,15 +35,18 @@ public class Directory {
     @JoinColumn(name = "parent_directory_id")
     private Directory parentDirectory;
 
+    @Column
+    private boolean root;
+
 
 
 
     //Getters / Setters
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -85,4 +86,11 @@ public class Directory {
         return id;
     }
 
+    public boolean isRoot() {
+        return root;
+    }
+
+    public void setRoot(boolean root) {
+        this.root = root;
+    }
 }

@@ -2,10 +2,10 @@ package builder;
 
 import config.TestConfig;
 import filesdirectories.builder.DirectoryBuilder;
+import filesdirectories.builder.DirectoryInfoBuilder;
 import filesdirectories.entities.Directory;
-import filesdirectories.exceptions.FileNotExistsException;
-import filesdirectories.exceptions.NotDirectoryException;
-import org.junit.Assert;
+import filesdirectories.exceptions.CannotReachFileAttributes;
+import filesdirectories.viewRepresentation.DirectoryInfo;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,14 +18,17 @@ import java.io.File;
 
 import static org.junit.Assert.*;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@Ignore
-public class DirectoryBuilderTest {
+public class DirectoryInfoBuilderTest {
 
     @Autowired
     private DirectoryBuilder directoryBuilder;
+
+    @Autowired
+    private DirectoryInfoBuilder directoryInfoBuilder;
 
     @Test
     public void successfulBuild() {
@@ -33,7 +36,6 @@ public class DirectoryBuilderTest {
         String path = "src\\test\\resources\\testFolder";
         File file = new File(path);
         path = file.getAbsolutePath();
-
         Directory built = directoryBuilder.build(file);
 
         assertNotNull(built);
@@ -41,28 +43,23 @@ public class DirectoryBuilderTest {
         assertEquals(built.getDirectories().size(), 1);
         assertEquals(built.getFiles().size(), 1);
 
+        try {
+            DirectoryInfo result = directoryInfoBuilder.build(built);
+            assertNotNull(result);
+            assertEquals(1, result.getNumberOfDirectories());
+            assertEquals(1, result.getNumberOfFiles());
+        } catch (CannotReachFileAttributes e) {
+            fail();
+        }
+
     }
 
     @Test
-    public void fileNotFoundTest() {
-        String path = "src\\test\\resources\\testFolderNew";
-        File file = new File(path);
-        try {
-            Directory built = directoryBuilder.build(file);
-            fail();
-        } catch (FileNotExistsException e) {
-        }
-    }
+    public void byteConversionTest() {
 
-    @Test
-    public void fileNotDirectoryTest() {
-        String path = "src\\test\\resources\\testFolder\\testFile.txt";
-        File file = new File(path);
-        try {
-            Directory built = directoryBuilder.build(file);
-            fail();
-        } catch (NotDirectoryException e) {
-        }
+        String result = directoryInfoBuilder.byteConversion(1000000);
+        System.out.println(result);
+
     }
 
 

@@ -24,4 +24,6 @@ public interface DirectoryRepo extends PagingAndSortingRepository<Directory, Lon
 
     void deleteAll();
 
+    List<Directory> findAllByRootTrue();
+
 }

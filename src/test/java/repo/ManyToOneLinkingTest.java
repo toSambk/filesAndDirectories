@@ -14,6 +14,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 
@@ -37,8 +38,9 @@ public class ManyToOneLinkingTest {
 
     @Before
     public void setup() {
-        rootDir = new Directory("parent", new Date());
-        childDir = new Directory("child", new Date());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        rootDir = new Directory("parent", dateFormat.format(new Date()));
+        childDir = new Directory("child", dateFormat.format(new Date()));
         file = new _File(5);
         rootDir.setDirectories(Collections.singletonList(childDir));
         childDir.setParentDirectory(rootDir);
