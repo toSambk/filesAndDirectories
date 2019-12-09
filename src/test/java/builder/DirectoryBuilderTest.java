@@ -3,9 +3,7 @@ package builder;
 import config.TestConfig;
 import filesdirectories.builder.DirectoryBuilder;
 import filesdirectories.entities.Directory;
-import filesdirectories.exceptions.FileNotExistsException;
 import filesdirectories.exceptions.NotDirectoryException;
-import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,17 +39,6 @@ public class DirectoryBuilderTest {
         assertEquals(built.getDirectories().size(), 1);
         assertEquals(built.getFiles().size(), 1);
 
-    }
-
-    @Test
-    public void fileNotFoundTest() {
-        String path = "src\\test\\resources\\testFolderNew";
-        File file = new File(path);
-        try {
-            Directory built = directoryBuilder.build(file);
-            fail();
-        } catch (FileNotExistsException e) {
-        }
     }
 
     @Test

@@ -2,7 +2,6 @@ package filesdirectories.builder;
 
 import filesdirectories.entities.Directory;
 import filesdirectories.entities._File;
-import filesdirectories.exceptions.FileNotExistsException;
 import filesdirectories.exceptions.NotDirectoryException;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,6 @@ public class DirectoryBuilder implements Builder<Directory, File> {
     @Override
     public Directory build(File root) {
 
-        if (!root.exists()) throw new FileNotExistsException("Добавляемой директории не существует");
         if (!root.isDirectory()) throw new NotDirectoryException("Добавляемый файл не является директорией");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Directory rootDir = new Directory(root.getAbsolutePath(), dateFormat.format(new Date()));
@@ -32,7 +30,7 @@ public class DirectoryBuilder implements Builder<Directory, File> {
                 curDir.setParentDirectory(rootDir);
                 childDirs.add(curDir);
             } else {
-                _File curFile = new _File(file.length());
+                _File curFile = new _File(file.length(), file.getAbsolutePath());
                 curFile.setDirectory(rootDir);
                 childFiles.add(curFile);
             }

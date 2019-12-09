@@ -1,6 +1,7 @@
 package builder;
 
 import config.TestConfig;
+import filesdirectories.builder.Converter;
 import filesdirectories.builder.DirectoryBuilder;
 import filesdirectories.builder.DirectoryInfoBuilder;
 import filesdirectories.entities.Directory;
@@ -30,6 +31,9 @@ public class DirectoryInfoBuilderTest {
     @Autowired
     private DirectoryInfoBuilder directoryInfoBuilder;
 
+    @Autowired
+    private Converter converter;
+
     @Test
     public void successfulBuild() {
 
@@ -57,7 +61,7 @@ public class DirectoryInfoBuilderTest {
     @Test
     public void byteConversionTest() {
 
-        String result = directoryInfoBuilder.byteConversion(1000000);
+        String result = converter.byteConversion(1000000);
         System.out.println(result);
 
     }

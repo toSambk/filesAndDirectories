@@ -2,6 +2,8 @@ package filesdirectories.viewRepresentation;
 
 import filesdirectories.entities.Directory;
 
+import java.util.List;
+
 public class DirectoryInfo {
 
     private String date;
@@ -15,7 +17,6 @@ public class DirectoryInfo {
     private String sizeOfFiles;
 
     private long directoryId;
-
 
     public DirectoryInfo(Directory root, long numberOfDirectories, long numberOfFiles, String sizeOfFiles) {
         this.date = root.getDate();

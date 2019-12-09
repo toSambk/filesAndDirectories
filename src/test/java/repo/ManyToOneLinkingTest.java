@@ -41,7 +41,7 @@ public class ManyToOneLinkingTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         rootDir = new Directory("parent", dateFormat.format(new Date()));
         childDir = new Directory("child", dateFormat.format(new Date()));
-        file = new _File(5);
+        file = new _File(5, "childFile");
         rootDir.setDirectories(Collections.singletonList(childDir));
         childDir.setParentDirectory(rootDir);
         childDir.setFiles(Collections.singletonList(file));
@@ -51,8 +51,6 @@ public class ManyToOneLinkingTest {
     @Test
     public void saveHierarchy() {
         directoryRepo.save(rootDir);
-//        directoryRepo.save(childDir);
-//        fileRepo.save(file);
 
         Directory foundParent = directoryRepo.findById(rootDir.getId());
 

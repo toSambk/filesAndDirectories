@@ -8,8 +8,9 @@ public class _File {
 
     public _File(){}
 
-    public _File(long size) {
+    public _File(long size, String path) {
         this.size = size;
+        this.path = path;
     }
 
     @Column
@@ -23,6 +24,9 @@ public class _File {
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "directory_id")
     private Directory directory;
+
+    @Column
+    private String path;
 
 
 
@@ -45,5 +49,13 @@ public class _File {
 
     public void setDirectory(Directory directory) {
         this.directory = directory;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

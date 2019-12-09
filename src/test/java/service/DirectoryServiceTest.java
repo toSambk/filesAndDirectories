@@ -44,6 +44,12 @@ public class DirectoryServiceTest {
         assertEquals(path, foundRoot.getPath());
         assertEquals(1 , foundRoot.getDirectories().size());
         assertEquals(1, foundRoot.getFiles().size());
+
+        path = "C:\\Users\\bksim\\Desktop\\Смородина";
+
+        directoryService.addDirectory(path);
+
+
     }
 
 }

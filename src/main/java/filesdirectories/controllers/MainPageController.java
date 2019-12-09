@@ -1,7 +1,6 @@
 package filesdirectories.controllers;
 
 import filesdirectories.entities.Directory;
-import filesdirectories.exceptions.FileNotExistsException;
 import filesdirectories.exceptions.NotDirectoryException;
 import filesdirectories.forms.AddDirectoryFormBean;
 import filesdirectories.repo.DirectoryRepo;
@@ -16,7 +15,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +39,13 @@ public class MainPageController {
     @PostMapping(path = "/addToList")
     public String addToList(@Validated @ModelAttribute("addDirFormBean") AddDirectoryFormBean bean,
                             BindingResult result, ModelMap model) {
-        if(directoryRepo.findByPath(bean.getPath()) == null) {
+
+        Directory found = directoryRepo.findByPath(bean.getPath());
+
+        if(found == null || !found.isRoot()) {
             try {
                 directoryService.addDirectory(bean.getPath());
-            } catch (FileNotExistsException | NotDirectoryException e) {
+            } catch (NotDirectoryException e) {
                 result.addError(new FieldError("addDirFormBean", "path", e.getMessage()));
             }
         } else {
@@ -62,11 +63,12 @@ public class MainPageController {
     }
 
 
+
+
     @ModelAttribute("addDirFormBean")
     public AddDirectoryFormBean newFormBean() {
         AddDirectoryFormBean bean = new AddDirectoryFormBean();
         return bean;
     }
-
 
 }

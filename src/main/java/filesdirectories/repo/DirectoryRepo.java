@@ -1,7 +1,6 @@
 package filesdirectories.repo;
 
 import filesdirectories.entities.Directory;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
