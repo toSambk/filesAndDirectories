@@ -2,7 +2,7 @@ package filesdirectories.viewRepresentation;
 
 public class FileInfo {
 
-    private String fileName;
+    private String filename;
 
     private String size;
 
@@ -15,17 +15,17 @@ public class FileInfo {
     public FileInfo(){}
 
     public FileInfo(String fileName, String size, long id) {
-        this.fileName = fileName;
+        this.filename = fileName;
         this.size = size;
         this.id = id;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getSize() {

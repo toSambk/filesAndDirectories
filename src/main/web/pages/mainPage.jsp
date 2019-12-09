@@ -33,42 +33,22 @@
             <td>${directory.numberOfDirectories}</td>
             <td>${directory.numberOfFiles}</td>
             <td>${directory.sizeOfFiles}</td>
-            <td><button id="btn" onclick="loadFiles(${directory.directoryId});printHeader('${directory.path} + ${directory.date}')">Файлы</button></td>
+            <td><button id="btn" onclick="loadFiles(${directory.directoryId});printHeader('${directory.path} ${directory.date}')">Файлы</button></td>
         </tr>
     </c:forEach>
+
 
     <div id="customModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <div id="header">
-                    <h2>Шапка модального окна</h2>
                 </div>
             </div>
             <div class="modal-body" id="modal-content">
-                <p>Какой-то текст в теле модального окна</p>
-                <p>Ещё другой текст...</p>
             </div>
         </div>
     </div>
-
-
-
-<%--    --%>
-<%--    <div id="customModal" class="modal">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <span class="close" onclick="closeModal()">&times;</span>--%>
-<%--                <div id="header">--%>
-<%--                <h2>Шапка модального окна</h2>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="modal-body" id="modal-content">--%>
-<%--                <p>Какой-то текст в теле модального окна</p>--%>
-<%--                <p>Ещё другой текст...</p>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 
 </body>
 </html>
