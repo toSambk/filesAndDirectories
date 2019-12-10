@@ -4,7 +4,6 @@ import config.TestConfig;
 import filesdirectories.entities.Directory;
 import filesdirectories.repo.DirectoryRepo;
 import filesdirectories.service.DirectoryService;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +37,7 @@ public class DirectoryServiceTest {
 
     @Test
     public void addDirectoryTest() {
-        directoryService.addDirectory(path);
+        directoryService.addNewDirectory(path);
         Directory foundRoot = directoryRepo.findByPath(path);
         assertNotNull(foundRoot);
         assertEquals(path, foundRoot.getPath());
@@ -47,7 +46,7 @@ public class DirectoryServiceTest {
 
         path = "C:\\Users\\bksim\\Desktop\\Смородина";
 
-        directoryService.addDirectory(path);
+        directoryService.addNewDirectory(path);
 
 
     }

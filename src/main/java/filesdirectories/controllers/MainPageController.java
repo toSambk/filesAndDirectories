@@ -42,15 +42,18 @@ public class MainPageController {
 
         Directory found = directoryRepo.findByPath(bean.getPath());
 
-        if(found == null || !found.isRoot()) {
+        if(found == null) {
             try {
-                directoryService.addDirectory(bean.getPath());
+                directoryService.addNewDirectory(bean.getPath());
             } catch (NotDirectoryException e) {
                 result.addError(new FieldError("addDirFormBean", "path", e.getMessage()));
             }
+        } else if(!found.isRoot()) {
+                directoryService.makeRootAddedDirectory(found);
         } else {
-            result.addError(new FieldError("addDirFormBean", "path", "Данная директория уже добавлена"));
+                result.addError(new FieldError("addDirFormBean", "path", "Данная директория уже добавлена"));
         }
+
 
         if(result.hasErrors()) {
             model.addAttribute("addedDirectories",

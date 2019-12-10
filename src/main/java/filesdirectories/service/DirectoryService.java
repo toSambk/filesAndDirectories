@@ -1,8 +1,8 @@
 package filesdirectories.service;
 
-import filesdirectories.builder.Converter;
 import filesdirectories.builder.DirectoryBuilder;
-import filesdirectories.builder.DirectoryInfoBuilder;
+import filesdirectories.builder.ViewDirectoryInfoConverter;
+import filesdirectories.builder.ViewFileInfoConverter;
 import filesdirectories.entities.Directory;
 import filesdirectories.repo.DirectoryRepo;
 import filesdirectories.viewRepresentation.DirectoryInfo;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,32 +24,32 @@ public class DirectoryService {
     private DirectoryBuilder directoryBuilder;
 
     @Autowired
-    private DirectoryInfoBuilder directoryInfoBuilder;
+    private ViewDirectoryInfoConverter viewDirectoryInfoConverter;
 
     @Autowired
-    private Converter converter;
+    private ViewFileInfoConverter viewFileInfoConverter;
 
-    public void addDirectory(String path) {
+    public void addNewDirectory(String path) {
         Directory buildDir = directoryBuilder.build(new File(path));
         directoryRepo.save(buildDir);
     }
 
+    public void makeRootAddedDirectory(Directory found) {
+
+        Directory parentDirectory = directoryBuilder.build(found);
+        directoryRepo.save(parentDirectory);
+
+    }
+
     public List<DirectoryInfo> getDirectoryInfo() {
         return directoryRepo.findAllByRootTrue().stream()
-                .map(x -> directoryInfoBuilder.build(x))
+                .map(x -> viewDirectoryInfoConverter.convert(x))
                 .collect(Collectors.toList());
     }
 
     public List<FileInfo> getFilesInfo(long rootDirId) {
-
-        List<FileInfo> result = new ArrayList<>();
         Directory found = directoryRepo.findById(rootDirId);
-        found.getDirectories()
-                .forEach(x-> result.add(new FileInfo(x.getPath(), "<DIR>", x.getId())));
-        found.getFiles()
-                .forEach(x-> result.add(new FileInfo(x.getPath(), converter.byteConversion(x.getSize()), x.getId())));
-
-        return result;
+        return viewFileInfoConverter.convert(found);
     }
 
 }

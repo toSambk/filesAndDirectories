@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class DirectoryBuilder implements Builder<Directory, File> {
+public class DirectoryBuilder {
 
-    @Override
+
     public Directory build(File root) {
 
         if (!root.isDirectory()) throw new NotDirectoryException("Добавляемый файл не является директорией");
@@ -38,9 +38,43 @@ public class DirectoryBuilder implements Builder<Directory, File> {
 
         rootDir.setDirectories(childDirs);
         rootDir.setFiles(childFiles);
-
         return rootDir;
 
+    }
+
+
+    public Directory build(Directory existingChildDirectory) {
+
+        Directory parentDirectory = existingChildDirectory.getParentDirectory();
+
+        File childRootFile = new File(existingChildDirectory.getPath());
+
+        List<Directory> childDirs = new ArrayList<>();
+        List<_File> childFiles = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+
+        for (File file : childRootFile.listFiles()) {
+            if (file.isDirectory()) {
+                Directory curDir = new Directory(file.getAbsolutePath(), dateFormat.format(new Date()));
+                curDir.setParentDirectory(existingChildDirectory);
+                childDirs.add(curDir);
+            } else {
+                _File curFile = new _File(file.length(), file.getAbsolutePath());
+                curFile.setDirectory(existingChildDirectory);
+                childFiles.add(curFile);
+            }
+        }
+
+        existingChildDirectory.setDirectories(childDirs);
+        existingChildDirectory.setFiles(childFiles);
+        existingChildDirectory.setRoot(true);
+        List<Directory> directories = parentDirectory.getDirectories();
+        Directory directory = directories.stream().filter(x -> x.getId() == existingChildDirectory.getId()).findFirst().get();
+        int i = directories.indexOf(directory);
+        directories.set(i, existingChildDirectory);
+        parentDirectory.setDirectories(directories);
+
+        return parentDirectory;
     }
 
 

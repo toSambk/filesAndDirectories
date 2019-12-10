@@ -12,12 +12,15 @@ public class FileInfo {
 
     private String rootDate;
 
+    private boolean directory;
+
     public FileInfo(){}
 
-    public FileInfo(String fileName, String size, long id) {
+    public FileInfo(String fileName, String size, long id, boolean directory) {
         this.filename = fileName;
         this.size = size;
         this.id = id;
+        this.directory = directory;
     }
 
     public String getFilename() {
@@ -58,5 +61,13 @@ public class FileInfo {
 
     public void setRootDate(String rootDate) {
         this.rootDate = rootDate;
+    }
+
+    public boolean isDirectory() {
+        return directory;
+    }
+
+    public void setDirectory(boolean directory) {
+        this.directory = directory;
     }
 }
