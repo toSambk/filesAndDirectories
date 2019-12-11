@@ -7,6 +7,7 @@ import filesdirectories.builder.ViewDirectoryInfoConverter;
 import filesdirectories.entities.Directory;
 import filesdirectories.exceptions.CannotReachFileAttributes;
 import filesdirectories.viewRepresentation.DirectoryInfo;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,11 @@ import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 
-//@Ignore
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class ViewDirectoryInfoConverterTest {
+class ViewDirectoryInfoConverterTest {
 
     @Autowired
     private DirectoryBuilder directoryBuilder;

@@ -19,18 +19,18 @@ public class DirectoryBuilder {
 
         if (!root.isDirectory()) throw new NotDirectoryException("Добавляемый файл не является директорией");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        Directory rootDir = new Directory(root.getAbsolutePath(), dateFormat.format(new Date()));
+        Directory rootDir = new Directory(root.getPath(), dateFormat.format(new Date()));
         rootDir.setRoot(true);
         List<Directory> childDirs = new ArrayList<>();
         List<_File> childFiles = new ArrayList<>();
 
         for (File file : root.listFiles()) {
             if (file.isDirectory()) {
-                Directory curDir = new Directory(file.getAbsolutePath(), dateFormat.format(new Date()));
+                Directory curDir = new Directory(file.getPath(), dateFormat.format(new Date()));
                 curDir.setParentDirectory(rootDir);
                 childDirs.add(curDir);
             } else {
-                _File curFile = new _File(file.length(), file.getAbsolutePath());
+                _File curFile = new _File(file.length(), file.getPath());
                 curFile.setDirectory(rootDir);
                 childFiles.add(curFile);
             }
