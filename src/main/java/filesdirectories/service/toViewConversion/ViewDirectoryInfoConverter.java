@@ -1,6 +1,5 @@
 package filesdirectories.service.toViewConversion;
 
-import filesdirectories.service.builder.ByteConverter;
 import filesdirectories.entities.Directory;
 import filesdirectories.exceptions.CannotReachFileAttributes;
 import filesdirectories.service.toViewConversion.visitors.FileVisitor;
@@ -18,10 +17,12 @@ public class ViewDirectoryInfoConverter implements Converter<DirectoryInfo, Dire
     @Autowired
     private ByteConverter converter;
 
+    @Autowired
+    private FileVisitor visitor;
+
     @Override
     public DirectoryInfo convert(Directory directory) {
 
-        FileVisitor visitor = new FileVisitor();
         try {
             Files.walkFileTree(Paths.get(directory.getPath()), visitor);
         } catch (IOException e) {

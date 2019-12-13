@@ -1,6 +1,5 @@
 package filesdirectories.service.toViewConversion;
 
-import filesdirectories.service.builder.ByteConverter;
 import filesdirectories.service.toViewConversion.comparators.ComparatorByName;
 import filesdirectories.service.toViewConversion.comparators.ComparatorByNumbersInFilename;
 import filesdirectories.entities.Directory;
@@ -8,6 +7,7 @@ import filesdirectories.viewRepresentation.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +40,8 @@ public class ViewFileInfoConverter implements Converter<List<FileInfo>, Director
         return resultList;
     }
 
-    public String parsePath(String path) {
-        return path.substring(path.lastIndexOf('\\') + 1);
+    private String parsePath(String path) {
+        return path.substring(path.lastIndexOf(File.separator) + 1);
     }
 
 

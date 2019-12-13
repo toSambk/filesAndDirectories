@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.List;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +31,16 @@ public class DirectoryService {
     private ViewFileInfoConverter viewFileInfoConverter;
 
     public void addNewDirectory(String path) {
-        Directory buildDir = directoryBuilder.build(new File(path));
+
+        UnaryOperator<String> manageSeparators = x-> {
+            if(path.contains(File.separator)) {
+                return x;
+            } else if(path.contains("\\")) {
+                return x.replaceAll("\\\\", "/");
+            } else return x.replaceAll("/", "\\\\");
+        };
+
+        Directory buildDir = directoryBuilder.build(new File(manageSeparators.apply(path)));
         directoryRepo.save(buildDir);
     }
 

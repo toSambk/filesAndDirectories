@@ -1,11 +1,14 @@
 package filesdirectories.service.toViewConversion.visitors;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+@Component
 public class FileVisitor extends SimpleFileVisitor<Path> {
 
     private long directoriesCount = 0;

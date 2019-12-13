@@ -1,4 +1,4 @@
-package builder.comparators;
+package service.toViewConversion.comparators;
 
 import config.TestConfig;
 import filesdirectories.service.toViewConversion.comparators.ComparatorByName;

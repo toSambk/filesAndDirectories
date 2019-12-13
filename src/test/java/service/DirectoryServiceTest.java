@@ -35,9 +35,11 @@ public class DirectoryServiceTest {
 
     private File file;
 
+    private String sep = File.separator;
+
     @Before
     public void setup() throws IOException {
-        file = new File("src/test/resources/testFolder");
+        file = new File("src" + sep + "test" + sep + "resources" + sep + "testFolder");
 
         path = file.getPath();
         System.out.println(path);

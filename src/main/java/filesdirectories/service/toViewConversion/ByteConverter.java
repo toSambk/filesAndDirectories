@@ -1,12 +1,13 @@
-package filesdirectories.service.builder;
+package filesdirectories.service.toViewConversion;
 
 import org.springframework.stereotype.Component;
 
 import java.text.DecimalFormat;
 
 @Component
-public class ByteConverter {
+public class ByteConverter implements Converter<String, Long>{
 
+    @Override
     public String convert(Long sizeInBytes) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         double result = sizeInBytes;
@@ -20,5 +21,7 @@ public class ByteConverter {
         result /= 1024;
         return decimalFormat.format(result) + "Tb";
     }
+
+
 
 }

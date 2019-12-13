@@ -1,7 +1,7 @@
-package builder;
+package service.toViewConversion;
 
 import config.TestConfig;
-import filesdirectories.service.builder.ByteConverter;
+import filesdirectories.service.toViewConversion.ByteConverter;
 import filesdirectories.service.builder.DirectoryBuilder;
 import filesdirectories.service.toViewConversion.ViewDirectoryInfoConverter;
 import filesdirectories.entities.Directory;
@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -38,10 +37,11 @@ class ViewDirectoryInfoConverterTest {
     @Autowired
     private ByteConverter converter;
 
+    private String sep = File.separator;
+
     @Test
     public void successfulBuild() {
-
-        String path = "src\\test\\resources\\testFolder";
+        String path = "src" + sep + "test" + sep + "resources" + sep + "testFolder";
         File file = new File(path);
         path = file.getAbsolutePath();
         Directory built = directoryBuilder.build(file);
@@ -61,24 +61,6 @@ class ViewDirectoryInfoConverterTest {
         }
 
     }
-
-    @Test
-    public void byteConversionTest() {
-
-        String result = converter.convert(1000000L);
-        System.out.println(result);
-
-        List<String> allMatches = new ArrayList<String>();
-        Matcher m = Pattern.compile("[0-9]*")
-                .matcher("gbrt8t1n2y8n5ty2ny8ny2n8t28yn28282811n4m1,,14/1712,828/");
-        while (m.find()) {
-            if (!m.group().isEmpty()) allMatches.add(m.group());
-        }
-
-        int i = 0;
-
-    }
-
 
 
 }
