@@ -1,13 +1,12 @@
-package filesdirectories.builder;
+package filesdirectories.service.builder;
 
 import org.springframework.stereotype.Component;
 
 import java.text.DecimalFormat;
 
 @Component
-public class ByteConverter implements Converter<String, Long> {
+public class ByteConverter {
 
-    @Override
     public String convert(Long sizeInBytes) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         double result = sizeInBytes;

@@ -1,4 +1,4 @@
-package filesdirectories.builder;
+package filesdirectories.service.toViewConversion.comparators;
 
 import filesdirectories.viewRepresentation.FileInfo;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,6 @@ public class ComparatorByName implements Comparator<FileInfo> {
 
         String first = o1.getFilename().replaceAll("[0-9]", "").toLowerCase();
         String second = o2.getFilename().replaceAll("[0-9]", "").toLowerCase();
-
 
         return first.compareTo(second);
 

@@ -1,8 +1,8 @@
 package builder.comparators;
 
 import config.TestConfig;
-import filesdirectories.builder.ComparatorByName;
-import filesdirectories.builder.ComparatorByNumbersInFilename;
+import filesdirectories.service.toViewConversion.comparators.ComparatorByName;
+import filesdirectories.service.toViewConversion.comparators.ComparatorByNumbersInFilename;
 import filesdirectories.viewRepresentation.FileInfo;
 import org.junit.Before;
 import org.junit.Ignore;

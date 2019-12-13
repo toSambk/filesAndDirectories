@@ -1,9 +1,9 @@
 package builder;
 
 import config.TestConfig;
-import filesdirectories.builder.ByteConverter;
-import filesdirectories.builder.DirectoryBuilder;
-import filesdirectories.builder.ViewDirectoryInfoConverter;
+import filesdirectories.service.builder.ByteConverter;
+import filesdirectories.service.builder.DirectoryBuilder;
+import filesdirectories.service.toViewConversion.ViewDirectoryInfoConverter;
 import filesdirectories.entities.Directory;
 import filesdirectories.exceptions.CannotReachFileAttributes;
 import filesdirectories.viewRepresentation.DirectoryInfo;

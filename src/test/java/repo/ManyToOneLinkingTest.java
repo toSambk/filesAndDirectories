@@ -5,7 +5,6 @@ import filesdirectories.entities.Directory;
 import filesdirectories.entities._File;
 import filesdirectories.repo.DirectoryRepo;
 import filesdirectories.repo.FileRepo;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -50,6 +47,7 @@ public class ManyToOneLinkingTest {
 
     @Test
     public void saveHierarchy() {
+
         directoryRepo.save(rootDir);
 
         Directory foundParent = directoryRepo.findById(rootDir.getId());
@@ -64,7 +62,6 @@ public class ManyToOneLinkingTest {
         assertEquals(childDir.getId(), foundFile.getDirectory().getId());
 
     }
-
 
 
 }

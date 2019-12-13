@@ -1,10 +1,10 @@
 package filesdirectories.service;
 
-import filesdirectories.builder.DirectoryBuilder;
-import filesdirectories.builder.ViewDirectoryInfoConverter;
-import filesdirectories.builder.ViewFileInfoConverter;
+import filesdirectories.service.builder.DirectoryBuilder;
 import filesdirectories.entities.Directory;
 import filesdirectories.repo.DirectoryRepo;
+import filesdirectories.service.toViewConversion.ViewDirectoryInfoConverter;
+import filesdirectories.service.toViewConversion.ViewFileInfoConverter;
 import filesdirectories.viewRepresentation.DirectoryInfo;
 import filesdirectories.viewRepresentation.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;

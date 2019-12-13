@@ -1,5 +1,8 @@
-package filesdirectories.builder;
+package filesdirectories.service.toViewConversion;
 
+import filesdirectories.service.builder.ByteConverter;
+import filesdirectories.service.toViewConversion.comparators.ComparatorByName;
+import filesdirectories.service.toViewConversion.comparators.ComparatorByNumbersInFilename;
 import filesdirectories.entities.Directory;
 import filesdirectories.viewRepresentation.FileInfo;
 import org.springframework.beans.factory.annotation.Autowired;

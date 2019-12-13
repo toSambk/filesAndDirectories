@@ -1,8 +1,9 @@
-package filesdirectories.builder;
+package filesdirectories.service.toViewConversion;
 
+import filesdirectories.service.builder.ByteConverter;
 import filesdirectories.entities.Directory;
 import filesdirectories.exceptions.CannotReachFileAttributes;
-import filesdirectories.builder.visitors.FileVisitor;
+import filesdirectories.service.toViewConversion.visitors.FileVisitor;
 import filesdirectories.viewRepresentation.DirectoryInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

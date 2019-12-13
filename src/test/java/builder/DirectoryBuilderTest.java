@@ -1,7 +1,7 @@
 package builder;
 
 import config.TestConfig;
-import filesdirectories.builder.DirectoryBuilder;
+import filesdirectories.service.builder.DirectoryBuilder;
 import filesdirectories.entities.Directory;
 import filesdirectories.exceptions.NotDirectoryException;
 import org.junit.Ignore;

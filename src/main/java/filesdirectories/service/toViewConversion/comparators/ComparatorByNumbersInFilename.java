@@ -1,8 +1,7 @@
-package filesdirectories.builder;
+package filesdirectories.service.toViewConversion.comparators;
 
 import filesdirectories.viewRepresentation.FileInfo;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -37,7 +36,7 @@ public class ComparatorByNumbersInFilename implements Comparator<FileInfo> {
         }
         if (!matches1.isEmpty() && !matches2.isEmpty()) {
             for (int i = 0; i < Math.min(matches1.size(), matches2.size()); i++) {
-                if (matches1.get(i) == matches2.get(i)) {
+                if (matches1.get(i).equals(matches2.get(i))) {
                     result = 0;
                     if(i == matches1.size() - 1) result = -1;
                     if(i == matches2.size() - 1) result = 1;
