@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystem;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -37,6 +38,7 @@ public class DirectoryServiceTest {
     @Before
     public void setup() throws IOException {
         file = new File("src/test/resources/testFolder");
+
         path = file.getPath();
         System.out.println(path);
     }

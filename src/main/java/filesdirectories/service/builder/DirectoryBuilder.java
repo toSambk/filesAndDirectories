@@ -68,6 +68,7 @@ public class DirectoryBuilder {
 
         private void calculate() {
             for (File file : rootFile.listFiles()) {
+                System.out.println(file.getPath());
                 if (file.isDirectory()) {
                     Directory curDir = new Directory(file.getPath(), dateFormat.format(new Date()));
                     curDir.setParentDirectory(rootDir);
