@@ -48,8 +48,9 @@ public class DirectoryServiceTest {
         Directory foundRoot = directoryRepo.findByPath(path);
         assertNotNull(foundRoot);
         assertEquals(path, foundRoot.getPath());
-        assertEquals(1 , foundRoot.getDirectories().size());
         assertEquals(1, foundRoot.getFiles().size());
+        assertEquals(1 , foundRoot.getDirectories().size());
+
     }
 
 }
