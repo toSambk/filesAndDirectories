@@ -45,7 +45,6 @@ public class DirectoryServiceTest {
 
     @Test
     public void addDirectoryTest() {
-        System.out.println(file.getAbsolutePath());
         directoryService.addNewDirectory(path);
         Directory foundRoot = directoryRepo.findByPath(path);
         assertNotNull(foundRoot);
