@@ -34,11 +34,8 @@ public class DirectoryBuilder {
     public Directory build(Directory existingChildDirectory) {
 
         Directory parentDirectory = existingChildDirectory.getParentDirectory();
-
         File childRootFile = new File(existingChildDirectory.getPath());
-
         ScanResult result = new ScanResult(childRootFile, existingChildDirectory);
-
         existingChildDirectory.setDirectories(result.getChildDirs());
         existingChildDirectory.setFiles(result.getChildFiles());
         existingChildDirectory.setRoot(true);
@@ -70,14 +67,13 @@ public class DirectoryBuilder {
         }
 
         private void calculate() {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             for (File file : rootFile.listFiles()) {
                 if (file.isDirectory()) {
-                    Directory curDir = new Directory(file.getAbsolutePath(), dateFormat.format(new Date()));
+                    Directory curDir = new Directory(file.getPath(), dateFormat.format(new Date()));
                     curDir.setParentDirectory(rootDir);
                     childDirs.add(curDir);
                 } else {
-                    _File curFile = new _File(file.length(), file.getAbsolutePath());
+                    _File curFile = new _File(file.length(), file.getPath());
                     curFile.setDirectory(rootDir);
                     childFiles.add(curFile);
                 }

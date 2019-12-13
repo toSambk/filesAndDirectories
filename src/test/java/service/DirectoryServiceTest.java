@@ -14,11 +14,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -32,13 +32,18 @@ public class DirectoryServiceTest {
 
     private String path;
 
+    private File file;
+
     @Before
-    public void setup() {
-        path = new File("src\\test\\resources\\testFolder").getPath();
+    public void setup() throws IOException {
+        file = new File("src\\test\\resources\\testFolder");
+        path = file.getCanonicalPath();
+        System.out.println(path);
     }
 
     @Test
     public void addDirectoryTest() {
+        System.out.println(file.getAbsolutePath());
         directoryService.addNewDirectory(path);
         Directory foundRoot = directoryRepo.findByPath(path);
         assertNotNull(foundRoot);
