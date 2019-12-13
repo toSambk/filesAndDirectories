@@ -37,7 +37,7 @@ public class DirectoryServiceTest {
     @Before
     public void setup() throws IOException {
         file = new File("src/test/resources/testFolder");
-        path = file.getCanonicalPath();
+        path = file.getPath();
         System.out.println(path);
     }
 
