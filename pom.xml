@@ -15,7 +15,7 @@
         <spring.version>5.2.20.RELEASE</spring.version>
         <hibernate.validator.version>6.0.14.Final</hibernate.validator.version>
         <spring.data.version>2.2.2.RELEASE</spring.data.version>
-        <jackson.version>2.10.1</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <hibernate.version>5.4.8.Final</hibernate.version>
     </properties>
 
